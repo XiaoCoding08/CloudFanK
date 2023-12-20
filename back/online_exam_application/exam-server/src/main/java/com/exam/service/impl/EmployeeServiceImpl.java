@@ -2,7 +2,6 @@ package com.exam.service.impl;
 
 import com.exam.constant.MessageConstant;
 import com.exam.constant.StatusConstant;
-import com.exam.dto.EmployeeLoginDTO;
 import com.exam.exception.AccountLockedException;
 import com.exam.exception.AccountNotFoundException;
 import com.exam.exception.PasswordErrorException;
