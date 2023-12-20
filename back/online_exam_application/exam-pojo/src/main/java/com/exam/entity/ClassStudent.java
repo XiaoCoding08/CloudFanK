@@ -17,7 +17,7 @@ import java.io.Serializable;
 @TableName("class_student")
 @Data
 public class ClassStudent implements Serializable {
-    private static final long serialVersionUID = 280426871160438338L;
+    private static final long serialVersionUID = 1L;
     /**
      * 班级号
      */

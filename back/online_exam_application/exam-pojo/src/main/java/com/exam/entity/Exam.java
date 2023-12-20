@@ -17,7 +17,7 @@ import java.io.Serializable;
 @TableName("exam")
 @Data
 public class Exam implements Serializable {
-    private static final long serialVersionUID = -19805530905556565L;
+    private static final long serialVersionUID = 1L;
     /**
      * 考试号
      */
