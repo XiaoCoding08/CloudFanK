@@ -1,8 +1,5 @@
 package com.exam.service;
 
-import com.exam.dto.EmployeeLoginDTO;
-import com.exam.entity.Employee;
-
 public interface EmployeeService {
 
     /**

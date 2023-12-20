@@ -1,13 +1,10 @@
 package com.exam.controller.admin;
 
 import com.exam.constant.JwtClaimsConstant;
-import com.exam.dto.EmployeeLoginDTO;
-import com.exam.entity.Employee;
 import com.exam.properties.JwtProperties;
 import com.exam.result.Result;
 import com.exam.service.EmployeeService;
 import com.exam.utils.JwtUtil;
-import com.exam.vo.EmployeeLoginVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
