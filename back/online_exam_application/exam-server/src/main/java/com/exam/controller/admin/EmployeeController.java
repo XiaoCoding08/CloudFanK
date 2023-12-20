@@ -2,7 +2,6 @@ package com.exam.controller.admin;
 
 import com.exam.constant.JwtClaimsConstant;
 import com.exam.dto.EmployeeLoginDTO;
-import com.exam.entity.Employee;
 import com.exam.properties.JwtProperties;
 import com.exam.result.Result;
 import com.exam.service.EmployeeService;
