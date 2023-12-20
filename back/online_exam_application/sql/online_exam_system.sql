@@ -18,7 +18,7 @@ use online_exam_application;
 create table class
 (
     id                   bigint not null        COMMENT '班级号',
-    name                 char(20) not null      COMMENT '班级名',
+    name                 varchar(20) not null      COMMENT '班级名',
     course_id            bigint not null        COMMENT '关联课程号',
     create_time          datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     update_time          datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -58,7 +58,7 @@ create table class_student
 create table course
 (
     id                   bigint not null        COMMENT '课程号',
-    name                 char(20) not null      COMMENT '课程名',
+    name                 varchar(20) not null      COMMENT '课程名',
     create_user          bigint not null        COMMENT '教师工号',
     create_time          datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     update_time          datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -118,8 +118,8 @@ create table question
 create table student
 (
     id                   bigint not null        COMMENT '学号',
-    name                 char(20) not null      COMMENT '姓名',
-    password             char(20) not null      COMMENT '密码',
+    name                 varchar(20) not null      COMMENT '姓名',
+    password             varchar(65) not null      COMMENT '密码',
     create_time          datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     update_time          datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     is_delete            tinyint NOT NULL DEFAULT 0 COMMENT '是否删除（0 - 未删除，1 - 删除）',
@@ -146,8 +146,8 @@ create table exam_student
 create table teacher
 (
     id                   bigint not null        COMMENT '工号',
-    name                 char(20) not null      COMMENT '姓名',
-    password             char(20) not null      COMMENT '密码',
+    name                 varchar(20) not null      COMMENT '姓名',
+    password             varchar(64) not null      COMMENT '密码',
     create_time          datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     update_time          datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     is_delete            tinyint NOT NULL DEFAULT 0 COMMENT '是否删除（0 - 未删除，1 - 删除）',
