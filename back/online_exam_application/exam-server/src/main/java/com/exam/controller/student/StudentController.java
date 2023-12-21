@@ -1,14 +1,14 @@
-package com.exam.controller.teacher;
+package com.exam.controller.student;
 
 import com.exam.constant.JwtClaimsConstant;
-import com.exam.dto.TeacherLoginDTO;
-import com.exam.dto.TeacherSignUpDTO;
-import com.exam.entity.Teacher;
+import com.exam.dto.StudentLoginDTO;
+import com.exam.dto.StudentSignUpDTO;
+import com.exam.entity.Student;
 import com.exam.properties.JwtProperties;
 import com.exam.result.Result;
-import com.exam.service.TeacherService;
+import com.exam.service.StudentService;
 import com.exam.utils.JwtUtil;
-import com.exam.vo.TeacherLoginVO;
+import com.exam.vo.StudentLoginVO;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,49 +23,49 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/teacher")
+@RequestMapping("/student")
 @Slf4j
-@Api(tags = "1.教师模块")
-public class Controller {
+@Api(tags = "2.学生模块")
+public class StudentController {
     @Autowired
     private JwtProperties jwtProperties;
     @Autowired
-    private TeacherService teacherService;
+    private StudentService studentService;
     /**
      * 教师登陆
-     * @param teacherLoginDTO
+     * @param studentLoginDTO
      * @return
      */
     @PostMapping("/login")
-    @ApiOperation("教师登陆")
+    @ApiOperation("学生登陆")
     @ApiOperationSupport(order = 1)
-    public Result<TeacherLoginVO> teacherLogin(@RequestBody TeacherLoginDTO teacherLoginDTO) {
-        log.info("员工登录：{}", teacherLoginDTO);
+    public Result<StudentLoginVO> studentLogin(@RequestBody StudentLoginDTO studentLoginDTO) {
+        log.info("学生登录：{}", studentLoginDTO);
 
-        Teacher teacher = teacherService.teacherLogin(teacherLoginDTO);
+        Student student = studentService.studentLogin(studentLoginDTO);
 
         //登录成功后，生成jwt令牌
         Map<String, Object> claims = new HashMap<>();
-        claims.put(JwtClaimsConstant.EMP_ID, teacher.getId());
+        claims.put(JwtClaimsConstant.EMP_ID, student.getId());
         String token = JwtUtil.createJWT(
                 jwtProperties.getAdminSecretKey(),
                 jwtProperties.getAdminTtl(),
                 claims);
 
-        TeacherLoginVO teacherLoginVO = TeacherLoginVO.builder()
-                .id(teacher.getId())
-                .name(teacher.getName())
+        StudentLoginVO studentLoginVO = StudentLoginVO.builder()
+                .id(student.getId())
+                .name(student.getName())
                 .token(token)
                 .build();
 
-        return Result.success(teacherLoginVO);
+        return Result.success(studentLoginVO);
     }
 
     @PostMapping("/signUp")
-    @ApiOperation("教师注册")
+    @ApiOperation("学生注册")
     @ApiOperationSupport(order = 2)
-    public Result<Object> teacherSignup(@RequestBody TeacherSignUpDTO teacherSignUpDTO){
-        teacherService.teacherSignUp(teacherSignUpDTO);
+    public Result<Object> studentSignup(@RequestBody StudentSignUpDTO studentSignUpDTO){
+        studentService.studentSignUp(studentSignUpDTO);
         return Result.success();
     }
 }
