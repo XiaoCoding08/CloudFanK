@@ -13,6 +13,12 @@ spring:
       username: ${exam.datasource.username}
       password: ${exam.datasource.password}
 
+alioss:
+  endpoint: ${exam.alioss.endpoint}
+  access-key-id: ${exam.alioss.access-key-id}Z
+  access-key-secret: ${exam.alioss.access-key-secret}
+  bucket-name: ${exam.alioss.bucket-name}
+
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true

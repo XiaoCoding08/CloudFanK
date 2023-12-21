@@ -26,7 +26,7 @@ import java.util.Map;
 @RequestMapping("/teacher")
 @Slf4j
 @Api(tags = "1.教师模块")
-public class Controller {
+public class TeacherController {
     @Autowired
     private JwtProperties jwtProperties;
     @Autowired
