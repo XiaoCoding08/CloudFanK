@@ -4,17 +4,17 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-public class QuestionPageQueryDTO {
+public class ClassPageQueryDTO {
     /**
-     * 课程号
+     * 关联课程号
      */
-    @ApiModelProperty("课程号")
+    @ApiModelProperty("关联课程号")
     private Long courseId;
     /**
-     * 题型
+     * 班级名
      */
-    @ApiModelProperty("题型")
-    private Integer type;
+    @ApiModelProperty("班级名")
+    private String name;
 
     /**
      * 页码
