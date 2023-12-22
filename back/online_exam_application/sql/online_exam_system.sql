@@ -88,7 +88,7 @@ create table exam_question
     question_id               bigint not null   COMMENT '题号',
     exam_id                   bigint not null   COMMENT '考试号',
     indexs                    int not null      COMMENT '题序',
-    scores                    int               COMMENT '分数',
+    scores                    int not null      COMMENT '分数',
     create_time               datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     update_time               datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     is_delete                 tinyint NOT NULL DEFAULT 0 COMMENT '是否删除（0 - 未删除，1 - 删除）',
@@ -131,9 +131,10 @@ create table student
 /*==============================================================*/
 create table exam_student
 (
-    exam_id               bigint not null       COMMENT '考试号',
-    student_id            bigint not null       COMMENT '学生学号',
-    answer                longtext              COMMENT '答题记录',
+    exam_id               bigint not null        COMMENT '考试号',
+    student_id            bigint not null        COMMENT '学生学号',
+    answer                longtext               COMMENT '答题记录',
+    scores                int not null DEFAULT 0 COMMENT '考试成绩',
     create_time           datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     update_time           datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     is_delete             tinyint NOT NULL DEFAULT 0 COMMENT '是否删除（0 - 未删除，1 - 删除）',

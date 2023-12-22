@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class QuestionPageQueryDTO {
+    private static final long serialVersionUID = 1L;
     /**
      * 课程号
      */

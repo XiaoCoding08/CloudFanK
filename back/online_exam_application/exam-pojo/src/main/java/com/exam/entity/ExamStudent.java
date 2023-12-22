@@ -34,6 +34,11 @@ public class ExamStudent implements Serializable {
     @ApiModelProperty("答题记录")
     private String answer;
     /**
+     * 分数
+     */
+    @ApiModelProperty("成绩")
+    private Integer scores;
+    /**
      * 创建时间
      */
     @ApiModelProperty("创建时间")
