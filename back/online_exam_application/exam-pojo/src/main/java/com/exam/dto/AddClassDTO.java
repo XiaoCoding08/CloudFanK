@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class AddClassDTO {
+    private static final long serialVersionUID = 1L;
     /**
      * 班级名
      */
