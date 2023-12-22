@@ -32,4 +32,10 @@ public interface ClassStudentService extends IService<ClassStudent> {
      */
     public List<Long> getStuIdByClassId(Long classId);
 
+    /**
+     * 获取学生班级列表
+     * @param classId
+     * @return
+     */
+    public List<Long> getClassIdByStuId(Long classId);
 }

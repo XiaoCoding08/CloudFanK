@@ -22,7 +22,7 @@ import java.util.List;
 @RequestMapping("/teacher")
 @Slf4j
 @Api(tags = "1.教师模块")
-public class ClassController {
+public class TcClassController {
     @Autowired
     private ClassService classService;
     @PostMapping("/addClass")
@@ -66,10 +66,10 @@ public class ClassController {
         int pageSize = classPageQueryDTO.getSize();
         Page<Classx> classxPage = classService.page(new Page<>(current, pageSize),
                 classService.getQueryWrapper(classPageQueryDTO));
-        Page<ClassVO> userVOPage = new Page<>(current, pageSize, classxPage.getTotal());
+        Page<ClassVO> classVOPage = new Page<>(current, pageSize, classxPage.getTotal());
         List<ClassVO> userVOList = classService.getQueryVOList(classxPage.getRecords());
-        userVOPage.setRecords(userVOList);
-        return Result.success(userVOPage);
+        classVOPage.setRecords(userVOList);
+        return Result.success(classVOPage);
     }
     @PostMapping("/updateClass")
     @ApiOperation("修改班级")

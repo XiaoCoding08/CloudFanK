@@ -10,6 +10,7 @@ import com.exam.service.ClassService;
 import com.exam.vo.ClassVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class ClassServiceImpl extends ServiceImpl<ClassMapper, Classx> implements ClassService {
-
+    @Autowired
+    private ClassMapper classMapper;
     @Override
     public QueryWrapper<Classx> getQueryWrapper(ClassPageQueryDTO classPageQueryDTO) {
         String name = classPageQueryDTO.getName();
@@ -46,5 +48,11 @@ public class ClassServiceImpl extends ServiceImpl<ClassMapper, Classx> implement
         Classx classx = new Classx();
         BeanUtils.copyProperties(classUpdateDTO,classx);
         this.updateById(classx);
+    }
+
+    @Override
+    public List<Classx> getBatchByClassIds(List<Long> collect) {
+        List<Classx> classxes = classMapper.selectBatchIds(collect);
+        return classxes;
     }
 }

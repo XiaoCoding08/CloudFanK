@@ -41,7 +41,6 @@ public class StudentController {
     @ApiOperationSupport(order = 1)
     public Result<StudentLoginVO> studentLogin(@RequestBody StudentLoginDTO studentLoginDTO) {
         log.info("学生登录：{}", studentLoginDTO);
-
         Student student = studentService.studentLogin(studentLoginDTO);
 
         //登录成功后，生成jwt令牌

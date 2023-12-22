@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("/teacher")
 @Slf4j
 @Api(tags = "1.教师模块")
-public class QuestionController {
+public class TcQuestionController {
     @Autowired
     private QuestionService questionService;
     @PostMapping("/addQuestion")
