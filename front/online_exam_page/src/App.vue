@@ -1,11 +1,13 @@
+<script setup>
+
+</script>
+
 <template>
-  <div id = "app">
-    <router-view/>
-  </div>
+
+   <router-view/>
+
 </template>
 
-<script>
-export default {
-  name: 'app'
-}
-</script>
+<style scoped>
+
+</style>
