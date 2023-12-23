@@ -13,5 +13,9 @@ public interface TeacherService extends IService<Teacher> {
      */
     Teacher teacherLogin(TeacherLoginDTO teacherLoginDTO);
 
+    /**
+     * 教师注册
+     * @param teacherSignUpDTO
+     */
     void teacherSignUp(TeacherSignUpDTO teacherSignUpDTO);
 }
