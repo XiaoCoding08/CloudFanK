@@ -7,8 +7,13 @@ import router from './router'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import httpInstance from "@/utils/http.js";
-
+// import {test} from '@/apis/testApi.js'
 const app = createApp(App)
+
+// //接口测试
+// test().then((res) =>{
+//     console.log(res)
+// })
 
 app.use(createPinia())
 app.use(router)

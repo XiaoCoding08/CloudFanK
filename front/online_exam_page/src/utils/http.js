@@ -3,7 +3,7 @@ import axios from 'axios'
 
 //使用axios下面的create([config])方法创建axios实例，其中config参数为axios最基本的配置信息。
 const httpInstance = axios.create({
-    baseURL:'http://localhost:8080', //请求后端数据的基本地址，自定义
+    baseURL:'http://127.0.0.1:8080', //请求后端数据的基本地址，自定义
     headers: {
         "Content-Type": "application/json;charset=utf-8",
     },
