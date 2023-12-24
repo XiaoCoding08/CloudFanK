@@ -13,6 +13,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,11 +39,12 @@ public class TcCourseController {
         courseService.save(course);
         return Result.success(course.getId());
     }
+    @Transactional
     @PostMapping("/delOneCourse")
     @ApiOperation("删除课程")
     @ApiOperationSupport(order = 10)
     public Result teacherDelClass(@RequestParam(value = "id") Long id){
-        // todo 删除班级
+        classService.removeByCourseId(id);
         courseService.removeById(id);
         return Result.success();
     }

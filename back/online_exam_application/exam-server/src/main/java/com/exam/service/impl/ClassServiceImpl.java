@@ -55,4 +55,8 @@ public class ClassServiceImpl extends ServiceImpl<ClassMapper, Classx> implement
         List<Classx> classxes = classMapper.selectBatchIds(collect);
         return classxes;
     }
+
+    public boolean removeByCourseId(Long courseId) {
+        return this.remove(new QueryWrapper<Classx>().eq("course_id", courseId));
+    }
 }

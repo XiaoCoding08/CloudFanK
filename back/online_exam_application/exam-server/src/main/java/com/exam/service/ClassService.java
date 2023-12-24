@@ -43,4 +43,6 @@ public interface ClassService extends IService<Classx> {
      * @return
      */
     List<Classx> getBatchByClassIds(List<Long> collect);
+
+    boolean removeByCourseId(Long courseId);
 }
