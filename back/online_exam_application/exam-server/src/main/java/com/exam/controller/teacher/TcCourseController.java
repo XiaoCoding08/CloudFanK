@@ -31,7 +31,7 @@ public class TcCourseController {
 
     @PostMapping("/addCourse")
     @ApiOperation("新增课程")
-    @ApiOperationSupport(order = 9)
+    @ApiOperationSupport(order = 15)
     public Result<Long> teacherAddCourse(@RequestBody AddCourseDTO addCourseDTO){
         Course course = new Course();
         BeanUtils.copyProperties(addCourseDTO,course);
@@ -42,7 +42,7 @@ public class TcCourseController {
     @Transactional
     @PostMapping("/delOneCourse")
     @ApiOperation("删除课程")
-    @ApiOperationSupport(order = 10)
+    @ApiOperationSupport(order = 16)
     public Result teacherDelClass(@RequestParam(value = "id") Long id){
         classService.removeByCourseId(id);
         courseService.removeById(id);
@@ -50,14 +50,14 @@ public class TcCourseController {
     }
     @PostMapping("/delBatchCourse")
     @ApiOperation("批量删除课程")
-    @ApiOperationSupport(order = 11)
+    @ApiOperationSupport(order = 17)
     public Result teacherDelClass(@RequestParam(value = "idList") List<Long> ids){
         courseService.removeByIds(ids);
         return Result.success();
     }
     @PostMapping("/queryOneCourse")
     @ApiOperation("查询单个课程")
-    @ApiOperationSupport(order = 12)
+    @ApiOperationSupport(order = 18)
     public Result<CourseVO> teacherQueryCourse(@RequestParam(value = "id") Long id){
         Course course = courseService.getById(id);
         CourseVO courseVO = CourseVO.builder().build();
@@ -66,7 +66,7 @@ public class TcCourseController {
     }
     @PostMapping("/queryBatchCourse")
     @ApiOperation("分页查询课程")
-    @ApiOperationSupport(order = 8)
+    @ApiOperationSupport(order = 19)
     public Result<Page<CourseVO>> teacherQueryCourse(@RequestBody CoursePageQueryDTO coursePageQueryDTO){
         // 获取分页信息
         int current = coursePageQueryDTO.getPage();
@@ -80,7 +80,7 @@ public class TcCourseController {
     }
     @PostMapping("/updateCourse")
     @ApiOperation("修改课程")
-    @ApiOperationSupport(order = 6)
+    @ApiOperationSupport(order = 20)
     public Result teacherUpdateClass(@RequestBody CourseUpdateDTO courseUpdateDTO){
         courseService.updateOne(courseUpdateDTO);
         return Result.success();

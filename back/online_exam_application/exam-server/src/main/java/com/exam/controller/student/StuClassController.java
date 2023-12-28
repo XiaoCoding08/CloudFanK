@@ -58,7 +58,7 @@ public class StuClassController {
     }
     @PostMapping("/getClass")
     @ApiOperation("分页获取班级列表")
-    @ApiOperationSupport(order = 4)
+    @ApiOperationSupport(order = 5)
     public Result<Page<ClassVO>> stuGetClass(@RequestBody StuClassPageQueryDTO stuClassPageQueryDTO){
         int page = stuClassPageQueryDTO.getPage();
         int size = stuClassPageQueryDTO.getSize();

@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -55,6 +56,6 @@ public class QuestionVO implements Serializable {
      * 创建时间
      */
     @ApiModelProperty("创建时间")
-    private Date createTime;
+    private LocalDateTime createTime;
 }
 

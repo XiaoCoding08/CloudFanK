@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.io.Serializable;
 
@@ -37,12 +38,12 @@ public class Classx implements Serializable {
      * 创建时间
      */
     @ApiModelProperty(value = "创建时间")
-    private Date createTime;
+    private LocalDateTime createTime;
     /**
      * 更新时间
      */
     @ApiModelProperty(value = "更新时间")
-    private Date updateTime;
+    private LocalDateTime updateTime;
     /**
      * 是否删除（0 - 未删除，1 - 删除）
      */

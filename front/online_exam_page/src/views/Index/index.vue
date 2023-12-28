@@ -7,8 +7,8 @@
     <div class="main">
       <ul>
         <li><a href="/" target="_self">首页</a></li>
-        <li><a href="teacher/login" target="_blank">教师</a></li>
-        <li><a href="student/login" target="_blank">学生</a></li>
+        <li><a href="teacher/login" target="_self">教师</a></li>
+        <li><a href="student/login" target="_self">学生</a></li>
       </ul>
     </div>
     <div class="title">

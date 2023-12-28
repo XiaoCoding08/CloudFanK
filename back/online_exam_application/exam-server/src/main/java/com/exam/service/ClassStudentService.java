@@ -38,4 +38,5 @@ public interface ClassStudentService extends IService<ClassStudent> {
      * @return
      */
     public List<Long> getClassIdByStuId(Long classId);
+
 }

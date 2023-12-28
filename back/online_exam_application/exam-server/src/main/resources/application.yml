@@ -36,7 +36,11 @@ logging:
         mapper: debug
         service: info
         controller: info
-
+redis:
+  host: ${exam.redis.host}
+  port: ${exam.redis.port}
+  password: ${exam.redis.password}
+  database: ${exam.redis.database}
 exam:
   jwt:
     # 设置jwt签名加密时使用的秘钥
