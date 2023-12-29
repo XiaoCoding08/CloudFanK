@@ -35,4 +35,8 @@ public interface ExamStudentService extends IService<ExamStudent> {
      * @return
      */
     public ExamStudentVO getExamStudentVO(ExamStudent examStudent);
+    /**
+     * 批改试卷
+     */
+    public int markExam(ExamStudentDTO examStudentDTO);
 }

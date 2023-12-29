@@ -56,4 +56,10 @@ public class ExamStudentServiceImpl extends ServiceImpl<ExamStudentMapper, ExamS
     public ExamStudentVO getExamStudentVO(ExamStudent examStudent) {
         return examStudent==null?null:BeanUtil.copyProperties(examStudent,ExamStudentVO.class);
     }
+
+    @Override
+    public int markExam(ExamStudentDTO examStudentDTO) {
+
+        return 0;
+    }
 }

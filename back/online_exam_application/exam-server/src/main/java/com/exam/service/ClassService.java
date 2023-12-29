@@ -23,7 +23,6 @@ public interface ClassService extends IService<Classx> {
      * @return
      */
     List<ClassVO> getQueryVOList(List<Classx> records);
-
     /**
      * VO转换
      * @param classx

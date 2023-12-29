@@ -4,9 +4,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.exam.dto.AddClassDTO;
 import com.exam.dto.ClassPageQueryDTO;
 import com.exam.dto.ClassUpdateDTO;
+import com.exam.entity.ClassExam;
 import com.exam.entity.Classx;
 import com.exam.result.Result;
+import com.exam.service.ClassExamService;
 import com.exam.service.ClassService;
+import com.exam.service.ClassStudentService;
 import com.exam.vo.ClassVO;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.Api;
@@ -14,6 +17,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +29,10 @@ import java.util.List;
 public class TcClassController {
     @Autowired
     private ClassService classService;
+    @Autowired
+    private ClassExamService classExamService;
+    @Autowired
+    private ClassStudentService classStudentService;
     @PostMapping("/addClass")
     @ApiOperation("新增班级")
     @ApiOperationSupport(order = 9)
@@ -37,7 +45,10 @@ public class TcClassController {
     @PostMapping("/delOneClass")
     @ApiOperation("删除班级")
     @ApiOperationSupport(order = 10)
+    @Transactional
     public Result teacherDelClass(@RequestParam(value = "id") Long id){
+        classExamService.removeByClassId(id);
+        classStudentService.delClass(id);
         classService.removeById(id);
         return Result.success();
     }
@@ -59,7 +70,7 @@ public class TcClassController {
     }
     @PostMapping("/queryBatchClass")
     @ApiOperation("分页查询班级")
-    @ApiOperationSupport(order = 8)
+    @ApiOperationSupport(order = 13)
     public Result<Page<ClassVO>> teacherQueryClass(@RequestBody ClassPageQueryDTO classPageQueryDTO){
         // 获取分页信息
         int current = classPageQueryDTO.getPage();
@@ -73,7 +84,7 @@ public class TcClassController {
     }
     @PostMapping("/updateClass")
     @ApiOperation("修改班级")
-    @ApiOperationSupport(order = 6)
+    @ApiOperationSupport(order = 14)
     public Result teacherUpdateClass(@RequestBody ClassUpdateDTO classUpdateDTO){
         classService.updateOne(classUpdateDTO);
         return Result.success();

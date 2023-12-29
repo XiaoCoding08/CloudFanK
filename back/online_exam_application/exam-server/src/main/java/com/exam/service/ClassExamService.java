@@ -31,6 +31,12 @@ public interface ClassExamService extends IService<ClassExam> {
      * @param examId
      * @return
      */
-    public List<Long> getStuIdByClassId(Long examId);
-    
+    public List<Long> getExamIdByClassId(Long examId);
+
+
+    /**
+     * 删除班级id所有考试
+     * @param id
+     */
+    void removeByClassId(Long id);
 }
