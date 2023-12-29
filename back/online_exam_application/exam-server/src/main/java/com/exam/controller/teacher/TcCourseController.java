@@ -85,4 +85,5 @@ public class TcCourseController {
         courseService.updateOne(courseUpdateDTO);
         return Result.success();
     }
+
 }

@@ -25,7 +25,7 @@ public class CourseVO implements Serializable {
      * 关联教师号
      */
     @ApiModelProperty(value = "关联教师号")
-    private Long teacherId;
+    private Long create_user;
 
 
 }

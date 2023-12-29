@@ -10,7 +10,7 @@ public class CoursePageQueryDTO {
      * 关联教师号
      */
     @ApiModelProperty("关联教师号")
-    private Long CreateUser;
+    private Long createUser;
     /**
      * 课程名
      */
