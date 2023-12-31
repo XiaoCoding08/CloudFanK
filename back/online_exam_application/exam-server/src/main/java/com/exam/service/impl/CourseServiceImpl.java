@@ -25,7 +25,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         String name = coursePageQueryDTO.getName();
         Long createUser = coursePageQueryDTO.getCreateUser();
         QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(createUser != null, "course_user", createUser);
+        queryWrapper.eq(createUser != null, "create_user", createUser);
         queryWrapper.like(StringUtils.isNoneBlank(name), "name", name);
         return queryWrapper;
     }

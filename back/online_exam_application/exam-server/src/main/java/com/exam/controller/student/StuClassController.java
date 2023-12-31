@@ -64,7 +64,7 @@ public class StuClassController {
         int size = stuClassPageQueryDTO.getSize();
         //分页查询学生所属班级
         Page<ClassStudent> classStuList = classStudentService.page(new Page<>(page,size),
-                new QueryWrapper<ClassStudent>().eq("stu_id",stuClassPageQueryDTO.getStudentId()));
+                new QueryWrapper<ClassStudent>().eq("student_id",stuClassPageQueryDTO.getStudentId()));
         //根据班级Id获取班级信息
         List<Classx> classList = classService.getBatchByClassIds(
                 //获取ClassId列表

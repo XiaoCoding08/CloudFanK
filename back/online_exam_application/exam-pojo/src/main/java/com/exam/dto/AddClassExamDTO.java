@@ -17,14 +17,14 @@ import java.io.Serializable;
  * @since 2023-12-20 20:55:29
  */
 @Data
-public class ExamDTO implements Serializable {
+public class AddClassExamDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
-     * 考试id
+     * 班级id
      */
 
-    @ApiModelProperty(value = "考试id")
-    private Long id;
+    @ApiModelProperty(value = "班级id")
+    private Long classId;
     /**
      * 开始时间
      */

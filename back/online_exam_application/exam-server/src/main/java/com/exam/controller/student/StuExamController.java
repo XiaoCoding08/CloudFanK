@@ -1,5 +1,6 @@
 package com.exam.controller.student;
 
+import com.aliyuncs.kms.transform.v20160120.CreateAliasResponseUnmarshaller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.exam.dto.ExamStudentDTO;
 import com.exam.entity.Exam;
@@ -14,6 +15,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -34,6 +36,8 @@ public class StuExamController {
     private QuestionService questionService;
     @Autowired
     private ExamService examService;
+    @Autowired
+    private RedisTemplate redisTemplate;
     /**
      * 考试提交
      */
@@ -49,6 +53,21 @@ public class StuExamController {
                .eq("exam_id", examStudentDTO.getExamId());
         if(examStudentService.list(queryWrapper)!=null){
             examStudentService.addStu(examStudentDTO);
+        }
+    }
+    /**
+     * 查询考试是否开始
+     */
+    @PostMapping("/queryExamIsStart")
+    @ApiOperation("查询考试是否开始")
+    @ApiOperationSupport(order = 5)
+    public Result queryExamIsStart(@RequestParam(value = "id") Long examId) {
+        //查询考试是否开始
+        Object start = redisTemplate.opsForValue().get("Exam:"+examId);
+        if(start==null){
+            return Result.error("考试已经结束或未开始");
+        }else{
+            return Result.success();
         }
     }
     /**

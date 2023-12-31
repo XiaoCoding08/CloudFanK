@@ -1,6 +1,7 @@
 package com.exam.controller.teacher;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.exam.dto.AddClassExamDTO;
 import com.exam.dto.ClassExamDTO;
 import com.exam.dto.ExamDTO;
 import com.exam.dto.ExamQuestionDTO;
@@ -18,6 +19,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,10 +42,15 @@ public class TcExamController {
     @PostMapping("/addExam")
     @ApiOperation("添加考试")
     @ApiOperationSupport(order = 21)
-    public Result<Long> addExam(@RequestBody ExamDTO examDTO){
+    public Result<Long> addExam(@RequestBody AddClassExamDTO addClassExamDTO){
         Exam exam = new Exam();
-        BeanUtils.copyProperties(examDTO, exam);
+        exam.setStartTime(addClassExamDTO.getStartTime());
+        exam.setEndTime(addClassExamDTO.getEndTime());
         examService.save(exam);
+        ClassExam classExam = new ClassExam();
+        classExam.setExamId(exam.getId());
+        classExam.setClassId(addClassExamDTO.getClassId());
+        classExamService.save(classExam);
         return Result.success();
     }
     /**
@@ -89,15 +96,17 @@ public class TcExamController {
         classExamService.remove(queryWrapper);
         return Result.success();
     }
-    /**
-     * 查询班级考试
-     */
     @PostMapping("/queryClassExam")
     @ApiOperation("查询班级考试")
-    @ApiOperationSupport(order = 26)
-    public Result<List<Long>> queryExam(@RequestParam(value = "classId") Long classId){
-        List<Long> exam = classExamService.getExamIdByClassId(classId);
-        return Result.success(exam);
+    @ApiOperationSupport(order = 8)
+    public Result<List<Exam>> queryExam(@RequestParam(value = "classId") Long classId){
+        List<Long> examList = classExamService.getExamIdByClassId(classId);
+        List<Exam> stuExam = new ArrayList<>();
+        for (Long i:examList){
+            Exam exam = examService.getById(i);
+            stuExam.add(exam);
+        }
+        return Result.success(stuExam);
     }
     /**
      * 查询考试班级
@@ -106,7 +115,7 @@ public class TcExamController {
     @ApiOperation("查询考试班级")
     @ApiOperationSupport(order = 27)
     public Result<List<Long>> queryClassExam(@RequestParam(value = "examId") Long examId){
-        List<ClassExam> classExam = classExamService.list(new QueryWrapper<ClassExam>().eq("exam_id", examId));
+        List<ClassExam> classExam = classExamService.list(new QueryWrapper<ClassExam>().eq("class_id", examId));
         List<Long> classIds = classExam.stream().map(ClassExam::getClassId).collect(Collectors.toList());
         return Result.success(classIds);
     }

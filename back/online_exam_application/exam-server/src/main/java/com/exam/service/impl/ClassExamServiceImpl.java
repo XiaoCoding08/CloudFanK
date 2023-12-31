@@ -45,7 +45,7 @@ public class ClassExamServiceImpl extends ServiceImpl<ClassExamMapper, ClassExam
     @Override
     public List<Long> getExamIdByClassId(Long examId) {
         QueryWrapper<ClassExam> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("exam_id",examId);
+        queryWrapper.eq("class_id",examId);
         List<ClassExam> classExamList = this.list(queryWrapper);
         List<Long> classList = classExamList.stream().map(ClassExam::getExamId).collect(Collectors.toList());
         return classList;

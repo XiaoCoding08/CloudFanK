@@ -1,11 +1,14 @@
 package com.exam.controller.teacher;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.exam.dto.AddQuestionDTO;
 import com.exam.dto.QuestionPageQueryDTO;
 import com.exam.dto.UpdateQuestionDTO;
+import com.exam.entity.Course;
 import com.exam.entity.Question;
 import com.exam.result.Result;
+import com.exam.service.CourseService;
 import com.exam.service.QuestionService;
 import com.exam.vo.QuestionVO;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
@@ -15,7 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/teacher")
@@ -24,6 +29,8 @@ import java.util.List;
 public class TcQuestionController {
     @Autowired
     private QuestionService questionService;
+    @Autowired
+    private CourseService courseService;
     @PostMapping("/addQuestion")
     @ApiOperation("新增题目")
     @ApiOperationSupport(order = 3)
@@ -81,5 +88,21 @@ public class TcQuestionController {
         List<QuestionVO> userVOList = questionService.getQueryVOList(userPage.getRecords());
         userVOPage.setRecords(userVOList);
         return Result.success(userVOPage);
+    }
+    /**
+     * 获取老师所有题目
+     */
+    @GetMapping("/queryAllQuestion")
+    @ApiOperation("获取老师所有题目")
+    @ApiOperationSupport(order = 9)
+    public Result<List<Question>> teacherQueryAllQuestion(@RequestParam(value = "teacherId") Long teacherId){
+        List<Course> courses = courseService.list(new QueryWrapper<Course>().eq("create_user", teacherId));
+        List<Long> courseIdList = courses.stream().map(Course::getId).collect(Collectors.toList());
+        List<Question> questionList = new ArrayList<>();
+        for (Long courseId : courseIdList) {
+            List<Question> questions = questionService.list(new QueryWrapper<Question>().eq("course_id", courseId));
+            questionList.addAll(questions);
+        }
+        return Result.success(questionList);
     }
 }
