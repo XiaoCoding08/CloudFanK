@@ -18,5 +18,5 @@ httpInstance.interceptors.request.use(config => {
 httpInstance.interceptors.response.use(res =>res.data, e => {
    return  Promise.reject(e)
 })
-//导出建立的axios实例模块，ES6 export用法
+//导出我们建立的axios实例模块，ES6 export用法
 export default  httpInstance;
