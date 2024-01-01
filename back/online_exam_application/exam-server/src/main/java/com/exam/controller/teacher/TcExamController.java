@@ -7,10 +7,14 @@ import com.exam.dto.ExamDTO;
 import com.exam.dto.ExamQuestionDTO;
 import com.exam.entity.ClassExam;
 import com.exam.entity.Exam;
+import com.exam.entity.ExamQuestion;
+import com.exam.entity.Question;
 import com.exam.result.Result;
 import com.exam.service.ClassExamService;
 import com.exam.service.ExamQuestionService;
 import com.exam.service.ExamService;
+import com.exam.service.QuestionService;
+import com.exam.vo.ExamVO;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,6 +39,8 @@ public class TcExamController {
     private ExamQuestionService examQuestionService;
     @Autowired
     private ClassExamService classExamService;
+    @Autowired
+    private QuestionService questionService;
     /**
      * 添加考试
      * @return
@@ -104,6 +110,9 @@ public class TcExamController {
         List<Exam> stuExam = new ArrayList<>();
         for (Long i:examList){
             Exam exam = examService.getById(i);
+            if (exam == null){
+                continue;
+            }
             stuExam.add(exam);
         }
         return Result.success(stuExam);
@@ -118,5 +127,28 @@ public class TcExamController {
         List<ClassExam> classExam = classExamService.list(new QueryWrapper<ClassExam>().eq("class_id", examId));
         List<Long> classIds = classExam.stream().map(ClassExam::getClassId).collect(Collectors.toList());
         return Result.success(classIds);
+    }
+    /**
+     * 获取考试内容
+     */
+    @PostMapping("/getExamInfo")
+    @ApiOperation("获取考试内容")
+    @ApiOperationSupport(order = 7)
+    public Result<List<ExamVO>> getExamInfo(Long examId) {
+        QueryWrapper<ExamQuestion> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("exam_id", examId);
+        List<ExamQuestion> examQuestionList = examQuestionService.list(queryWrapper);
+        List<ExamVO> examVOList = new ArrayList<>();
+        for(ExamQuestion examQuestion:examQuestionList){
+            ExamVO examVO = new ExamVO();
+            if(examQuestion.getQuestionId()==null){
+                continue;
+            }
+            Question question = questionService.getById(examQuestion.getQuestionId());
+            examVO.setExamQuestion(examQuestion);
+            examVO.setQuestion(question);
+            examVOList.add(examVO);
+        }
+        return Result.success(examVOList);
     }
 }
