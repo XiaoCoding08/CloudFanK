@@ -26,7 +26,6 @@ public class ExamServiceImpl extends ServiceImpl<ExamMapper, Exam> implements Ex
     public void scheduleExams() {
         log.info("开始执行定时任务:考试开启");
         List<Exam> upcomingExams = examMapper.selectList(null);
-        System.out.println(upcomingExams);
         for (Exam exam : upcomingExams) {
             LocalDateTime startTime = exam.getStartTime();
             LocalDateTime endTime = exam.getEndTime();
