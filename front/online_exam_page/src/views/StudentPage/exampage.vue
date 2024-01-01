@@ -7,11 +7,12 @@
         <br>
         {{item.question.context}}
         <br>
-        <img v-if="item.question.imageUrl !==''" :src="item.question.imageUrl" alt="图片">
+        <img v-if="item.question.imageUrl !==''" :src="item.question.imageUrl" alt="图片"  width="200" height="200">
         <br>
         <br>
         你的答案
         <input  class="input-line"   v-model="sequence[index]">
+        <hr>
     </li>
     <br>
     <br> 

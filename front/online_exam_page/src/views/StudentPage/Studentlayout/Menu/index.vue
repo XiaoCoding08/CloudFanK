@@ -16,7 +16,7 @@
           </template>
           <el-menu-item-group title="班级">
             <el-menu-item index="/student/class">班级信息</el-menu-item>
-            <el-menu-item index="/student/test">班级考试</el-menu-item>
+            <!-- <el-menu-item index="/student/test">班级考试</el-menu-item> -->
           </el-menu-item-group>
          
         </el-sub-menu>
