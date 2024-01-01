@@ -6,7 +6,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import httpInstance from "@/utils/http.js";
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-// import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // import {test} from '@/apis/testApi.js'
 const app = createApp(App)
 

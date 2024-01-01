@@ -148,14 +148,14 @@ const requestData = {
   .then(response => {
     console.log(response.data);
     // 注册成功，可以根据实际需求进行处理，比如跳转到登录页面
-    alert("创建成功");
+    alert("加入成功");
     dialogVisible.value=false;
    
   })
   .catch(error => {
     console.log(error);
     // 注册失败，可以根据实际需求进行处理，比如显示错误提示
-    alert("创建失败，请重新创建"+ a2.value +'-----------'+ form.value.classid );
+    alert("加入失败，请重新加入"+ a2.value +'-----------'+ form.value.classid );
   });
 
 

@@ -16,7 +16,7 @@
           </template>
           <el-menu-item-group title="课程">
             <el-menu-item index="/teacher/course">课程管理</el-menu-item>
-            <el-menu-item index="/teacher/classinformation">班级管理</el-menu-item>
+            <!-- <el-menu-item index="/teacher/classinformation">班级管理</el-menu-item> -->
           </el-menu-item-group>
          
         </el-sub-menu>
@@ -26,8 +26,8 @@
             <span>考试管理</span>
           </template>
           <el-menu-item-group title="考试管理">
-            <el-menu-item index="/teacher/exam">考试管理</el-menu-item>
-            <el-menu-item index="/teacher/question">试题管理</el-menu-item>
+            <!-- <el-menu-item index="/teacher/exam">考试管理</el-menu-item> -->
+            <el-menu-item index="/teacher/question" @click="enter">试题管理</el-menu-item>
         
           </el-menu-item-group>
          
@@ -40,6 +40,7 @@
 
 <script lang="ts" setup>
 import {useRoute} from 'vue-router'
+import { course_classinfoStore }from '@/stores/counter'
 import { ref } from 'vue'
 import {
   Document,
@@ -47,6 +48,15 @@ import {
   Location,
   Setting,
 } from '@element-plus/icons-vue'
+const courseid=ref(course_classinfoStore().id.value)
+const enter =()=>{
+  if(courseid.value === '')
+  {
+    alert('先加入课程');
+    return ;
+  }
+}
+
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }

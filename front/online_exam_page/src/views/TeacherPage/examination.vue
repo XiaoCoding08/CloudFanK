@@ -164,6 +164,7 @@ const requestData = {
  
 
 };
+
 const input=ref()
 interface User {
   id:0,
@@ -178,7 +179,9 @@ const handleEdit = (index: number, row: User) => {
   id: row.id,
  
 };
-
+      
+      
+      
     const cr_cl=course_classinfoStore();
     cr_cl.setid(classData.id);
     const aa=examidStore();

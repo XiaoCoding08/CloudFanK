@@ -100,7 +100,22 @@ const handleEdit = (index: number, row: User) => {
   id: row.id,
  
 };
-
+const gettime = ()=>{
+  const v1 = new Date()
+  const newtime = v1.getFullYear() + '-' + (v1.getMonth()+1).toString().padStart(2, '0') + '-' + v1.getDate().toString().padStart(2, '0') + ' ' + v1.getHours().toString().padStart(2, '0') + ':' + v1.getMinutes().toString().padStart(2, '0')
+return {
+  newtime,
+}
+}
+const currentTime = new Date (gettime().newtime);
+      const  starttime = new Date(Date.parse(row.startTime));
+      const  endtime = new Date(Date.parse(row.endTime));
+      const date = new Date();
+      if(starttime > currentTime || endtime < currentTime  )
+      {
+        alert("不在考试时间内 ");
+        return;
+      }
     const exid=examidStore();
     exid.setid(classData.id);
     //alert(row.id);
